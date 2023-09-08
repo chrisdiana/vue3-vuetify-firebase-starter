@@ -11,9 +11,10 @@
 
 #### Firebase features
 
-* Basic CRUD data table and functions
-* Image upload, read and delete functions
+* Firestore basic CRUD data table and functions (user restricted to own space)
+* Firebase Storage image upload, read and delete functions (user restricted to own space)
 * Firebase Functions template
+* Firebase auth component to handle password login and reset
 
 ## Project setup
 
