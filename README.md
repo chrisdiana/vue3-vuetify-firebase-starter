@@ -115,6 +115,12 @@ service firebase.storage {
         allow read, write: if request.auth.uid == userId;
       }
     }
+    match /share {
+      allow read: if request.auth != null;
+      match /{allPaths=**} {
+        allow read: if request.auth != null;
+      }
+    }
   }
 }
 ```
