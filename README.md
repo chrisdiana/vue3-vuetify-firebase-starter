@@ -98,6 +98,12 @@ service cloud.firestore {
         allow read, write: if request.auth.uid == userId;
       }
     }
+    match /share {
+      allow read: if request.auth != null;
+      match /{document=**} {
+        allow read: if request.auth != null;
+      }
+    }
   }
 }
 ```
