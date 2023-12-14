@@ -17,7 +17,6 @@
 * Firebase auth component to handle password login and reset
 
 ## Project setup
-
 ```
 # yarn
 yarn
