@@ -1,21 +1,7 @@
 <template>
     <v-card class="mx-auto px-6 py-8">
-     	<v-data-table
-		    :headers="headers"
-		    :items="widgetStore.widgets"
-		    :sort-by="[{ key: 'name', order: 'asc' }]"
-		    class="elevation-1"
-		    dense
-		  >
-		    <template v-slot:top>
-		      <v-toolbar flat>
-		        <v-toolbar-title>Widgets</v-toolbar-title>
-		        <v-divider
-		          class="mx-4"
-		          inset
-		          vertical
-		        ></v-divider>
-		        <v-spacer></v-spacer>
+    	
+     
 		        <v-dialog
 		          v-model="dialog"
 		          max-width="500px"
@@ -87,38 +73,33 @@
 		            </v-card-actions>
 		          </v-card>
 		        </v-dialog>
-		      </v-toolbar>
-		    </template>
-		    <template v-slot:item.created="{ item }">
-		    	<span v-if="item.raw.created">
-		      {{ moment(new Date(item.raw.created?.seconds*1000)).format("MMM Do YYYY, h:mm a") }}
-		    	</span>
-		    </template>
-		    <template v-slot:item.updated="{ item }">
-		    	<span v-if="item.raw.updated">
-		      {{ moment(new Date(item.raw.updated?.seconds*1000)).format("MMM Do YYYY, h:mm a") }}
-		      </span>
-		    </template>
-		    <template v-slot:item.actions="{ item }">
-		      <v-icon
+	<v-list lines="one">
+			  <v-list-item
+			    v-for="item in widgetStore.widgets"
+			    :key="item.id"
+			  >
+			  	{{ item.name }}<br>
+			  	<span v-if="item.created">
+		      Created: {{ moment(new Date(item.created?.seconds*1000)).format("MMM Do YYYY, h:mm a") }}
+		    	</span><br>
+		    	<span v-if="item.updated">
+		      Updated: {{ moment(new Date(item.updated?.seconds*1000)).format("MMM Do YYYY, h:mm a") }}
+		      </span><br>
+		       <v-icon
 		        size="small"
 		        class="me-2"
-		        @click="editItem(item.raw)"
+		        @click="editItem(item)"
 		      >
 		        mdi-pencil
 		      </v-icon>
 		      <v-icon
 		        size="small"
-		        @click="deleteItem(item.raw)"
+		        @click="deleteItem(item)"
 		      >
 		        mdi-delete
 		      </v-icon>
-		    </template>
-		    <template v-slot:no-data>
-		      No data
-		    </template>
-		  </v-data-table>
-
+			  </v-list-item>
+			</v-list>
     </v-card>
 
 </template>

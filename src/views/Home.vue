@@ -2,20 +2,25 @@
   <v-container>
     <v-responsive>
       <v-row>
-        <v-col cols="3">
+        
+        <v-col cols="12">
           <h1>Home</h1>
           <p>Protected content</p>
           <p>{{ user?.email }}</p>
-          <v-img contain width="300" :src="filesStore.profileImage"></v-img>
+        </v-col>
 
+        <v-col cols="3">
+          <v-img contain width="300" :src="filesStore.profileImage"></v-img>
           <v-file-input label="Profile image" 
             v-model="profileImage"></v-file-input>
           <v-btn @click="uploadProfileImage">Upload</v-btn>
           <v-btn @click="filesStore.deleteProfileImage" color="red">Delete</v-btn>
         </v-col>
+
         <v-col cols="9">
           <Widgets />
         </v-col>
+
       </v-row>
     </v-responsive>
   </v-container>
