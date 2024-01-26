@@ -1,11 +1,7 @@
 // Utilities
 import { defineStore } from 'pinia'
-import {
-  signOut,
-} from 'firebase/auth'
-import { useFirebaseAuth } from 'vuefire'
+import { getAuth, signOut } from 'firebase/auth'
 import router from '@/router'
-
 
 
 export const useAppStore = defineStore('app', {
@@ -24,7 +20,7 @@ export const useAppStore = defineStore('app', {
       this.notifyOpen = true;
     },
     logout() {
-      const auth = useFirebaseAuth()
+      const auth = getAuth()
       return new Promise((resolve, reject) => {
         signOut(auth).then(res => {
           resolve(res)

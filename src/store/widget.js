@@ -9,7 +9,7 @@ import { collection,
          getDoc, 
          deleteDoc,
          serverTimestamp } from 'firebase/firestore'
-import { db } from '@/plugins/firebase'
+import { db, logEventFirebase } from '@/plugins/firebase'
 
 
 function userPath(user) {
@@ -46,6 +46,7 @@ export const useWidgetStore = defineStore('widget', {
         item.updated = serverTimestamp()
         await setDoc(docRef, item);
         this.widgets.push(item)
+        //logEventFirebase('add_widget', item);
       }
     },
     async updateUserWidget(item) {
